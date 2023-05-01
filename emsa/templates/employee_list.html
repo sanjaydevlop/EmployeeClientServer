@@ -1,0 +1,58 @@
+  <h2>Employee List</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Employee ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Contact</th>
+        <th>Email</th>
+        <th>Department</th>
+        <th>Manager</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for employee in employees %}
+        <tr>
+          <td>{{employee.id}}</td>
+          <td>{{ employee.name }}</td>
+          <td>{{ employee.age }}</td>
+          <td>{{ employee.contact }}</td>
+          <td>{{employee.email}}</td>
+          <td>{{ employee.department }}</td>
+          <td>
+            {% if employee.manager %}
+              {{ employee.manager.name }}
+            {% endif %}
+            {% if not employee.is_manager %}
+               {% if not employee.manager %}
+                Please assign manager
+                {% endif %}
+            {% endif %}
+            {% if employee.is_manager %}
+              None
+            {% endif %}
+          </td>
+          <td>  
+            <a href="/update/{{ employee.id }}">Edit</span></a>  
+            <a href="/delete/{{ employee.id }}">Delete</a>
+        </td> 
+        </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+  <center><a href="/emp" class="btn btn-primary">Add New Record</a></center>
+
+<form action="/search" method="get">
+    <h3>Search employees Name of Department: </h3>
+
+<input type="text" name="query" id="query"/>
+<input type="submit" value="Search">
+<hr>
+</form>
+<!-- <a href="{% url 'download_page' %}" download>
+    <button>Download Page</button>
+</a> -->
+<a href="{% url 'logout' %}" class="btn btn-primary">Logout</a>

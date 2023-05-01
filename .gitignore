@@ -1,0 +1,18 @@
+
+# settings.py
+# apps.py
+# admin.py
+
+emsp/settings.py
+db.sqlite3
+emsp/__pycache__/
+emsa/migrations/
+emsa/__pycache__/
+
+
+
+
+
+
+
+

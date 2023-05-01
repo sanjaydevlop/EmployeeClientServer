@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    
+
+    <title>Welcome {{employee.name}}, here is your profile</title>
+  </head>
+  <body>
+    <h1>Profile Page</h1>
+    <h3>Name:{{employees.name}}</h3>
+    <h3>Age:{{employees.age}}</h3>
+    <h3>Contact:{{employees.contact}}</h3>
+    <h3>Email:{{employees.email}}</h3>
+    <h3>Department:{{employees.department}}</h3>
+    <h3>Username:{{employees.username}}</h3>
+    <h3>Reporting Leader:
+    {% if not employees.is_manager %}
+      {% if employees.manager %}
+        {{employees.manager.name}}
+      {% endif %}
+    {% endif %}
+    {% if not employees.is_manager %}
+       {% if not employees.manager %}
+        None
+        {% endif %}
+    {% endif %}</h3>
+    <a href="{% url 'updatep' %}" class="btn btn-primary">Update Your Password Here!</a>
+    <br>
+
+    <a href="{% url 'logout' %}" class="btn btn-primary">Logout</a>
+
+
+  </body>
+</html>

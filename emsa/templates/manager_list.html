@@ -1,0 +1,34 @@
+<script>
+    function downloadPage() {
+        // get the content of the downloadable element
+        var content = document.getElementById('downloadable-content').innerHTML;
+
+        // create a new blob object with the HTML content
+        var blob = new Blob([content], { type: 'text/html' });
+
+        // create a link element to download the file
+        var link = document.createElement('a');
+        link.download = 'page.html';
+        link.href = URL.createObjectURL(blob);
+
+        // click the link to initiate the download
+        link.click();
+    }
+</script>
+
+
+<div id="downloadable-content">
+    <h2>Manager List</h2>
+  <ul>
+    {% for manager in managers %}
+      <li>{{ manager.name }}</li>
+      <!-- <li>{{manager.age}}</li>
+      <li>{{manager.contact}}</li> -->
+    {% empty %}
+      <li>No managers found.</li>
+    {% endfor %}
+  </ul>
+
+</div>
+
+<button onclick="downloadPage()">Download Page</button>
